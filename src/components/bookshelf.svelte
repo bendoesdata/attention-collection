@@ -77,12 +77,10 @@
 
 <div id="book-page">
     <div>
-        <div class="row">
-            <div class="col-1">
+        <div>
                 <h2 style="padding-bottom: 20px">Currently reading</h2>
                 <p>On my coffee table or bedside table. You can find all the books I remember reading on my bookshelf below, which pulls live data from the <a href="https://openlibrary.org/" target="_blank">OpenLibrary</a> API. Read about why I made this library <a href="/notepad/my-digital-bookshelf">here</a>.</p>
-            </div>
-            <div class="col-2" style="min-height: 400px; margin-left: 20px;">
+            <div style="min-height: 400px; margin-left: 20px;">
                 {#if nowReading != null}
                     {#each nowReading as book}
                         <div in:fade
@@ -200,6 +198,7 @@
     #book-page {
         padding: 15px;
     }
+    a { color: inherit; } 
     .book-row {
         border-bottom: 1px solid gray;
         margin-bottom: 10px
@@ -225,7 +224,7 @@
         min-height: 500px;
     }
     .book {
-        height: 270px;
+        height: 150px;
         width: 60px;
         position: relative;
         display: inline-block;
