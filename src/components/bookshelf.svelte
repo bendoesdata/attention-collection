@@ -65,7 +65,7 @@
         bookOffShelf = data;
     }
     // switch from bookshelf/list view
-    let shelfView = true;
+    let shelfView = false;
     function toggleView() {
         shelfView = !shelfView;
     }
@@ -78,33 +78,30 @@
 <div id="book-page">
     <div>
         <div>
-                <h2 style="padding-bottom: 20px">Currently reading</h2>
-                <p>On my coffee table or bedside table. You can find all the books I remember reading on my bookshelf below, which pulls live data from the <a href="https://openlibrary.org/" target="_blank">OpenLibrary</a> API. Read about why I made this library <a href="/notepad/my-digital-bookshelf">here</a>.</p>
-            <div style="min-height: 400px; margin-left: 20px;">
+                <h2 style="padding-bottom: 20px">Books</h2>
+                <h3>Current</h3>
+                <p>On my coffee table or bedside table. You can find all the books I remember reading on my bookshelf below, which pulls live data from the <a href="https://openlibrary.org/" target="_blank">OpenLibrary</a> API. Click on a book to view it on OpenLibrary. Read about why I made this library <a href="/notepad/my-digital-bookshelf">here</a>.</p>
+            <div style="min-height: 200px; margin-top: 20px">
                 {#if nowReading != null}
                     {#each nowReading as book}
                         <div in:fade
                             style="display: inline-block; margin-left: 10px; margin-right: 10px"
                         >
-                            <img 
-                                style="margin-bottom: 10px"
-                                src={book.cover_url}
-                                alt={book.title}
-                            />
-                            <h4>{book.title}</h4>
-                            <p style="line-height: 1; margin-top: -5px">
-                                by {book.author}
-                            </p>
                             <a
-                                style="line-height: 1margin-top: -30px"
-                                href="{olBookUrl}{book.ol_id}"
-                                target="_blank">View on OpenLibrary</a
-                            >
+                            href="{olBookUrl}{book.ol_id}"
+                            target="_blank">
+                                <img 
+                                    style="margin-bottom: 10px"
+                                    width="100"
+                                    src={book.cover_url}
+                                    alt={book.title}
+                                />
+                            </a>
                         </div>
                     {/each}
                     {:else}
                     <div>
-                        <p style="text-align: center">Getting latest books...</p>
+                        <p style="text-align: center; margin-bottom: 20px">Getting latest books...</p>
                         <div class="loader" style="margin: 0 auto"></div>
                     </div>
                 {/if}
@@ -113,30 +110,15 @@
     </div>
 
     <div in:fade class="row">
-        <div class="col-1">
-            <h2 style="margin-bottom: 20px">Off the shelf</h2>
-            <p>Click on a book to pull it off the shelf for more details.</p>
-            {#if bookOffShelf != null}
-                <img
-                    style="margin-bottom: -20px"
-                    src={bookOffShelf.cover_url}
-                    alt=""
-                />
-                <h2>{bookOffShelf.title}</h2>
-                <h4>by {bookOffShelf.author}</h4>
-                <a href="{olBookUrl}{bookOffShelf.ol_id}" target="_blank"
-                    >View on OpenLibrary</a
-                >
-            {/if}
-        </div>
-        <div class="col-2">
+        <div>
             {#if finalBooks != null}
-                {#if shelfView}
+                <!-- {#if shelfView}
                     <button class="toggle-btn" on:click={toggleView}>Show as 📋 list</button>
                 {:else}
                     <button class="toggle-btn" on:click={toggleView}>Show as 📚 bookshelf</button>
-                {/if}
-                
+                {/if} -->
+                <h3>Past read</h3>
+
                 <span style="float: right; font-size: 20px">Total books read: <strong>{booksLength}</strong></span>
             {/if}
             <div id="container" style="width: 100%">
@@ -159,23 +141,12 @@
                                 <div class="row book-row" style="max-width: 450px" 
                                 on:click={() => pullOffShelf(book)}
                                 in:fade="{{ duration: 2000 }}">
-                                    <div class="col-1">
+                                    <div>
                                             <img 
                                         style="margin-bottom: 10px; width: 100px"
                                         src={book.cover_url}
                                         alt={book.title}
                                     />
-                                    </div>
-                                    <div class="col-2">
-                                        <h4>{book.title}</h4>
-                                        <p style="line-height: 1; margin-top: -5px">
-                                            by {book.author}
-                                        </p>
-                                        <a
-                                            style="line-height: 1margin-top: -30px"
-                                            href="{olBookUrl}{book.ol_id}"
-                                            target="_blank">View on OpenLibrary</a
-                                        >
                                     </div>
                                 </div>
                             {/each}
@@ -195,9 +166,10 @@
     h1 {
         color: black;
     }
-    #book-page {
-        padding: 15px;
+    h2 {
+        font-size: 2rem;
     }
+    
     a { color: inherit; } 
     .book-row {
         border-bottom: 1px solid gray;
@@ -218,7 +190,6 @@
     #container {
         display: flex;
         flex-wrap: wrap;
-        border: solid 2px brown;
         padding: 5px;
         margin: 20px;
         min-height: 500px;
@@ -235,7 +206,7 @@
         top: 50%;
         left: 40%;
         margin: 10px;
-        width: 240px;
+        width: 30px;
         font-size: 20px;
         color: white;
         font-weight: 600;
@@ -244,9 +215,9 @@
     .loader {
         border: 16px solid #f3f3f3;
         border-radius: 50%;
-        border-top: 16px solid #3498db;
-        width: 120px;
-        height: 120px;
+        border-top: 16px solid #9ca243; 
+        width: 60px;
+        height:60px;
         -webkit-animation: spin 2s linear infinite; /* Safari */
         animation: spin 2s linear infinite;
     }

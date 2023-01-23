@@ -74,7 +74,8 @@
 </svelte:head>
 
 <div>   
-    <h2>Instapaper</h2>
+    <h2>Articles</h2>
+    <p>Pieces I have gathered online and read on Instapaper. Click EXPAND to see my highlights.</p>
     <div in:fade class="row">
         {#if dataLoaded != false}
             {#each articles as article}
@@ -93,7 +94,7 @@
                         </div>
                     {/each}
                     
-                    <Accordion entry={article.highlights} />
+                    <Accordion entry={article.highlights} title="expand" />
                 </div>
                 {/if}
                 <hr />
@@ -110,6 +111,15 @@
     }
     a { color: inherit; } 
 
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 300
+    }
+
     .article-sum {
         margin-top: 20px;
         margin-bottom: 10px;
@@ -120,7 +130,8 @@
         background-color: #9ca243; 
         width: 10px;
         height: 10px;
-        margin: 2px;
+        border-radius: 10px;
+        margin: 3px;
     }
 
     .date-tag {
