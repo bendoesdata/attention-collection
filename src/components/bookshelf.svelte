@@ -55,7 +55,11 @@
                 coverUrl + d.work.cover_edition_key + "-M.jpg"),
             (obj.author = d.work.author_names[0]),
             (obj.author_link = d.work.author_keys[0]);
-            arr.push(obj);
+
+            if (obj.title != null) {
+                arr.push(obj);
+            }
+
         });
         return arr;
     }
@@ -85,14 +89,14 @@
                 {#if nowReading != null}
                     {#each nowReading as book}
                         <div in:fade
-                            style="display: inline-block; margin-left: 10px; margin-right: 10px"
+                            style="display: inline-block; margin-left: 20px; margin-right: 20px"
                         >
                             <a
                             href="{olBookUrl}{book.ol_id}"
-                            target="_blank">
+                            target="_blank" rel="noreferrer">
                                 <img 
                                     style="margin-bottom: 10px"
-                                    width="100"
+                                    width="120"
                                     src={book.cover_url}
                                     alt={book.title}
                                 />
@@ -142,11 +146,16 @@
                                 on:click={() => pullOffShelf(book)}
                                 in:fade="{{ duration: 2000 }}">
                                     <div>
+                                        <a
+                            href="{olBookUrl}{book.ol_id}"
+                            target="_blank">
                                             <img 
                                         style="margin-bottom: 10px; width: 100px"
                                         src={book.cover_url}
                                         alt={book.title}
+                                        onerror={"this.parentElement.style.paddingTop = '10px'; this.parentElement.style.paddingLeft = '2px'; this.parentElement.style.border = '1px solid #8e8e8e'"}
                                     />
+                                    </a>
                                     </div>
                                 </div>
                             {/each}
@@ -191,7 +200,7 @@
         display: flex;
         flex-wrap: wrap;
         padding: 5px;
-        margin: 20px;
+        margin: 0px;
         min-height: 500px;
     }
     .book {

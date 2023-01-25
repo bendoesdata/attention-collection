@@ -76,7 +76,7 @@
 <div>   
     <h2>Articles</h2>
     <p>Pieces I have gathered online and read on Instapaper. Click EXPAND to see my highlights.</p>
-    <div in:fade class="row">
+    <div id="article-section" in:fade class="row">
         {#if dataLoaded != false}
             {#each articles as article}
                 <div class="article-sum">
