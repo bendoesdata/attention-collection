@@ -82,7 +82,7 @@
             {#each articles as article}
                 <div class="article-sum">
                     <a href="{article.link}">
-                        <h3>{article.title}</h3>
+                        <h3 style="text-decoration: underline;">{article.title}</h3>
                     </a>
                     <span class="date-tag">{article.date}</span>
                 </div>
