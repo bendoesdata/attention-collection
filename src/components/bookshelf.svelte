@@ -4,8 +4,6 @@
     // store URLs as variables for future reference
     const pastReadUrl =
         "https://openlibrary.org/people/bendextercooley/books/already-read.json";
-    const currentlyReadingUrl =
-        "https://openlibrary.org/people/bendextercooley/books/currently-reading.json";
     const coverUrl = "http://covers.openlibrary.org/b/olid/";
     const olBookUrl = "https://openlibrary.org/books/";
     // create some empty variables for storing data later
@@ -16,13 +14,9 @@
     let currentList = [];
     let finalBooks, nowReading, booksLength;
     onMount(async () => {
-        currentList = await fetch(currentlyReadingUrl).then((x) => x.json());
         bookList = await fetch(pastReadUrl).then((x) => x.json());
-        // console.log("data is ready: ", currentList);
-        nowReading = formatData(currentList, formattedReading);
         finalBooks = formatData(bookList, formattedBooks);
         booksLength = finalBooks.length;
-        console.log(nowReading);
     });
     // function to pull out the data that I want
     function formatData(dataObject, arr) {
@@ -63,6 +57,8 @@
         });
         return arr;
     }
+
+    
     // when user clicks book, display info on left side
     let bookOffShelf;
     function pullOffShelf(data) {
@@ -73,6 +69,17 @@
     function toggleView() {
         shelfView = !shelfView;
     }
+
+    function imageFallback(val) {
+        console.log('error', val)
+
+        // img.addEventListener("error", function(event) {
+        //     event.target.src = "https://default-image-link-goes-here"
+        //     event.onerror = null
+        // })
+        
+        console.log(val)
+    }
 </script>
 
 <svelte:head>
@@ -80,39 +87,6 @@
 </svelte:head>
 
 <div id="book-page">
-    <div>
-        <div>
-                <h2 style="padding-bottom: 20px">Books</h2>
-                <h3>Current</h3>
-                <p>On my coffee table or bedside table. You can find all the books I remember reading on my bookshelf below, which pulls live data from the <a href="https://openlibrary.org/" target="_blank">OpenLibrary</a> API. Click on a book to view it on OpenLibrary. Read about why I made this library <a href="/notepad/my-digital-bookshelf">here</a>.</p>
-            <div style="min-height: 200px; margin-top: 20px">
-                {#if nowReading != null}
-                    {#each nowReading as book}
-                        <div in:fade
-                            style="display: inline-block; margin-left: 20px; margin-right: 20px"
-                        >
-                            <a
-                            href="{olBookUrl}{book.ol_id}"
-                            target="_blank" rel="noreferrer">
-                                <img 
-                                    style="margin-bottom: 10px"
-                                    width="120"
-                                    src={book.cover_url}
-                                    alt={book.title}
-                                />
-                            </a>
-                        </div>
-                    {/each}
-                    {:else}
-                    <div>
-                        <p style="text-align: center; margin-bottom: 20px">Getting latest books...</p>
-                        <div class="loader" style="margin: 0 auto"></div>
-                    </div>
-                {/if}
-            </div>
-        </div>
-    </div>
-
     <div in:fade class="row">
         <div>
             {#if finalBooks != null}
@@ -123,7 +97,7 @@
                 {/if} -->
                 <h3>Past read</h3>
 
-                <span style="float: right; font-size: 20px">Total books read: <strong>{booksLength}</strong></span>
+                <span style="float: right; font-size: 20px">Total books: <strong>{booksLength}</strong></span>
             {/if}
             <div id="container" style="width: 100%">
                 {#if finalBooks != null}
@@ -149,11 +123,11 @@
                                         <a
                             href="{olBookUrl}{book.ol_id}"
                             target="_blank">
+                            <span class="fallback-title">{book.title}</span>
                                             <img 
                                         style="margin-bottom: 10px; width: 100px"
                                         src={book.cover_url}
                                         alt={book.title}
-                                        onerror={"this.parentElement.style.paddingTop = '10px'; this.parentElement.style.paddingLeft = '2px'; this.parentElement.style.border = '1px solid #8e8e8e'"}
                                     />
                                     </a>
                                     </div>
@@ -172,18 +146,27 @@
 </div>
 
 <style>
-    h1 {
-        color: black;
-    }
-    h2 {
-        font-size: 2rem;
+    #book-page {
+        margin-top: 50px
     }
     
-    a { color: inherit; } 
+    /* a { color: inherit; }  */
     .book-row {
-        border-bottom: 1px solid gray;
+        /* border-bottom: 1px solid gray; */
         margin-bottom: 10px
     }
+
+    .fallback-title {
+        font-size: 14px;
+        word-break: break-all;
+        display: block;
+        width: 100px;
+        position: absolute;
+        text-align: center;
+        z-index: -1;
+
+    }
+
     .row {
         display: flex;
         margin: 0 auto;
@@ -202,6 +185,7 @@
         padding: 5px;
         margin: 0px;
         min-height: 500px;
+        color: yellow
     }
     .book {
         height: 150px;

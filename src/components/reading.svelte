@@ -74,8 +74,9 @@
 </svelte:head>
 
 <div>   
-    <h2>Articles</h2>
     <p>Pieces I have gathered online and read on Instapaper. Click EXPAND to see my highlights.</p>
+    <br>
+    <br>
     <div id="article-section" in:fade class="row">
         {#if dataLoaded != false}
             {#each articles as article}

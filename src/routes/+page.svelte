@@ -1,5 +1,6 @@
 <script>
 import Bookshelf from "../components/bookshelf.svelte"
+import CurrentBooks from "../components/currentBooks.svelte"
 import Reading from "../components/reading.svelte"
 import Accordion from '../components/accordion.svelte'
 import Navbar from '../components/navbar.svelte'
@@ -13,15 +14,31 @@ const description = [
 
 </script>
 <main id="app">
-    <Sidebar bind:open/>
     <Navbar bind:sidebar={open}/>
+    <Sidebar bind:open/>
     <h1>Attention Collection</h1>
     <Accordion entry={description} title="what is this?" />
-    <div class="row">
+    <br>
+    <br>
+    <div class="row inverse-background-color">
+        <h2 class="title-section">CURRENT</h2>
+        <CurrentBooks />
         <div class="col-1">
-            <Reading id="articles" />
         </div>
         <div class="col-2">
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <h2 class="title-section">PAST</h2>
+        <div class="col-1" style="margin-top: 80px">
+            <h2>Articles</h2>
+            <Reading id="articles" />
+        </div>
+        <div class="col-2" style="margin-top: 80px">
+            <h2>Books</h2>
             <Bookshelf id="books" />
         </div>
     </div>
@@ -43,6 +60,14 @@ const description = [
         padding: 10px;
         font-weight: 900;
         font-size: 3rem
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .title-section {
+        padding: 10px;
     }
 
     a { color: inherit; } 

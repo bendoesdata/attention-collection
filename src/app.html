@@ -25,9 +25,16 @@
 html, body {
   height: 100%;
   /* olive green */
-  color: #9ca243; 
+  /* color: #9ca243;  */
   /* black */
-  background-color: #222222;
+  /* background-color: #222222; */
+  color: yellow;
+  background-color: #2e5b3c
+}
+
+.inverse-background-color {
+  color: #2e5b3c;
+  background-color: yellow
 }
 /*
   Typographic tweaks!
@@ -36,6 +43,7 @@ html, body {
 */
 body {
   line-height: 1.5;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
 }
 /*
@@ -57,6 +65,11 @@ input, button, textarea, select {
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
+
+h3 {
+        font-size: 1.5rem;
+        font-weight: 600
+    }
 /*
   9. Create a root stacking context
 */
