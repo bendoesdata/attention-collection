@@ -128,7 +128,7 @@
 
     .highlight-marker {
         display: inline-block;
-        background-color: #9ca243; 
+        background-color: yellow; 
         width: 10px;
         height: 10px;
         border-radius: 10px;
