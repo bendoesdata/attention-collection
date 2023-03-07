@@ -96,7 +96,7 @@
     .loader {
         border: 16px solid #f3f3f3;
         border-radius: 50%;
-        border-top: 16px solid #9ca243; 
+        border-top: 16px solid #222222; 
         width: 60px;
         height:60px;
         -webkit-animation: spin 2s linear infinite; /* Safari */

@@ -4,7 +4,7 @@
 	export let open = false
 </script>
 
-<aside class="absolute w-full h-full border-r-2 shadow-lg" class:open style="background-color: #2e5b3c; color: #yellow">
+<aside class="absolute w-full h-full border-r-2 shadow-lg" class:open style="background-color: #222222; color: #f3f3f3">
 	<nav class="p-12 text-xl">
 		<div class="block" on:click={() => animateScroll.scrollTo({element: '#article-section', duration: 2000, offset: -600})} on:click={() => open = !open}>ARTICLES</div>
 		<div class="block" on:click={() => animateScroll.scrollTo({element: '#book-page', duration: 2000, offset: -800})} on:click={() => open = !open}>BOOKS</div>

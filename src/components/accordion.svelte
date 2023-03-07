@@ -14,7 +14,7 @@
 	}
 
     .border-div {
-        border: 1px solid #9ca243; 
+        border: 1px solid #f3f3f3; 
         padding: 20px;
         max-width: 700px;
         font-style: italic;
@@ -31,7 +31,7 @@
 <div class="border-div">
 <ul transition:slide={{ duration: 300 }}>
 	{#each entry as item}
-	<li>{item.text}</li>
+	<li>— {item.text}</li>
 	{/each}
 </ul>
 </div>

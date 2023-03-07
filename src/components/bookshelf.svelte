@@ -121,7 +121,7 @@
                                 in:fade="{{ duration: 2000 }}">
                                     <div>
                                         <a
-                            href="{olBookUrl}{book.ol_id}"
+                            href="{'https://bookshop.org/search?keywords='+book.title+' '+book.author}"
                             target="_blank">
                             <span class="fallback-title">{book.title}</span>
                                             <img 
@@ -185,7 +185,7 @@
         padding: 5px;
         margin: 0px;
         min-height: 500px;
-        color: yellow
+        color: #f3f3f3
     }
     .book {
         height: 150px;

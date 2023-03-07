@@ -107,7 +107,7 @@
 <style>
     hr {
         margin-top: 10px;
-        border: 1px solid  #9ca243;
+        border: 1px solid  #222222;
         height: 1px
     }
     a { color: inherit; } 
@@ -128,7 +128,7 @@
 
     .highlight-marker {
         display: inline-block;
-        background-color: yellow; 
+        background-color: #f3f3f3; 
         width: 10px;
         height: 10px;
         border-radius: 10px;
